@@ -26,7 +26,9 @@ export default function App() {
             default: dataProvider(
               "https://670cc7d77e5a228ec1d15f7e.mockapi.io"
             ),
-            onboarding: dataProvider("z"),
+            onboarding: dataProvider(
+              "https://65c32aeff7e6ea59682c11c1.mockapi.io/test-api"
+            ),
           }}
           resources={[
             {
@@ -41,7 +43,7 @@ export default function App() {
               name: "onboarding",
               list: "/onboarding",
               meta: {
-                dataProviderName: "",
+                dataProviderName: "onboarding",
               },
             },
           ]}

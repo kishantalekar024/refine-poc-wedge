@@ -5,7 +5,10 @@ import { data } from "./data";
 
 const OnBoardingTable = () => {
   const { dataGridProps } = useDataGrid({
-    resource: "transactions",
+    resource: "onboarding",
+    pagination: {
+      pageSize: 10,
+    },
   });
   const columns: GridColDef[] = [
     { field: "email", headerName: "Email", width: 200 },
@@ -22,11 +25,15 @@ const OnBoardingTable = () => {
       width: 180,
     },
     { field: "phone_number", headerName: "Phone Number", width: 180 },
+    { field: "manualNotes", headerName: "Manual Notes", width: 180 },
+    { field: "isManualOverridden", headerName: "Is OverRidden", width: 180 },
+    { field: "overriddenBy", headerName: "overriddenBy", width: 180 },
+    { field: "idvs", headerName: "idvs", width: 180 },
     { field: "failureReason", headerName: "Failure Reason", width: 180 },
   ];
   return (
-    <Box sx={{ height: 400, width: "100%" }}>
-      <DataGrid {...dataGridProps} rows={data} columns={columns} />
+    <Box sx={{ width: "100%" }}>
+      <DataGrid {...dataGridProps} columns={columns} />
     </Box>
   );
 };
