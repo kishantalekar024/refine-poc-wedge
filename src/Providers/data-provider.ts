@@ -57,7 +57,7 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
     const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
     const queryFilters = generateFilter(filters);
 
-    const query = {};
+    const query: { [key: string]: any } = {};
 
     if (mode === "server") {
       query.page = current; // Corrected pagination

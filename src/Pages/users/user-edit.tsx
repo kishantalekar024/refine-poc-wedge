@@ -12,7 +12,6 @@ export const UserEdit: React.FC = () => {
     formState: { errors },
   } = useForm<IUser>({
     refineCoreProps: {
-      redirect: true, // Prevent automatic redirect after submission
       successNotification: {
         message: "Successfully updated user",
         type: "success",
@@ -34,7 +33,6 @@ export const UserEdit: React.FC = () => {
             required: "Name is required",
           })}
           error={!!errors?.name}
-          helperText={errors?.name?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
@@ -48,7 +46,6 @@ export const UserEdit: React.FC = () => {
             required: "Avatar is required",
           })}
           error={!!errors?.avatar}
-          helperText={errors?.avatar?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
