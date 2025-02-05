@@ -55,7 +55,10 @@ export const dataProvider = (apiUrl: string): DataProvider => ({
   getList: async ({ resource, filters, sorters, pagination, meta }) => {
     const url = `${apiUrl}/${resource}`;
     const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
+    console.log("filters", filters);
     const queryFilters = generateFilter(filters);
+    queryFilters["search"] = queryFilters["name_like"];
+    delete queryFilters["name_like"];
 
     const query: { [key: string]: any } = {};
 

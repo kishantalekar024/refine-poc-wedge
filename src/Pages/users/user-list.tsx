@@ -1,15 +1,15 @@
 /// <reference no-default-lib="true"/>
-import { DeleteOutlined } from "@mui/icons-material";
-import { List, Table, Button } from "@mui/material";
+import { DeleteOutlined, SearchOutlined } from "@mui/icons-material";
+import { List, Table, Button, Input, Autocomplete } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useTable, useDelete, useGo } from "@refinedev/core";
 import { useDataGrid } from "@refinedev/mui";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IUser } from "./user-show";
-import console from "console";
 
 export const UserList = () => {
-  const { dataGridProps } = useDataGrid<IUser>({
+  const [searchTerm, setSearchTerm] = useState("");
+  const { dataGridProps, setFilters } = useDataGrid<IUser>({
     resource: "users",
     pagination: {
       mode: "server",
@@ -32,6 +32,26 @@ export const UserList = () => {
     ...restDataGridProps
   } = dataGridProps;
   const go = useGo();
+
+  // Debounce search and update filters
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchTerm) {
+        console.log(searchTerm);
+        setFilters([
+          {
+            field: "name",
+            operator: "contains",
+            value: searchTerm,
+          },
+        ]);
+      } else {
+        setFilters([]);
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm, setFilters]);
   const columns = React.useMemo<GridColDef<IUser>[]>(
     () => [
       {
@@ -93,6 +113,13 @@ export const UserList = () => {
   );
   return (
     <div>
+      <Input
+        placeholder="Search for users"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        sx={{ mb: 2, width: "100%", maxWidth: 300 }}
+        renderSuffix={() => <SearchOutlined />}
+      />
       <DataGrid {...dataGridProps} columns={columns} />
     </div>
   );
