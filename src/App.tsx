@@ -13,7 +13,6 @@ import { authProvider } from "./authProvider";
 import { ThemedLayoutV2 } from "@refinedev/mui";
 import { Login } from "./Pages/login";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
-import { OnboardingList } from "./Pages/onboarding/onboarding-list";
 import OnBoardingTable from "./Pages/wedge/wedge-table";
 
 export default function App() {

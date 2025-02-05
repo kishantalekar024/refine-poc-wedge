@@ -3,41 +3,6 @@ import { Box } from "@mui/material";
 import { GridColDef, DataGrid } from "@mui/x-data-grid";
 import { data } from "./data";
 
-const sampleData = [
-  {
-    id: "1",
-    email: "john.doe@example.com",
-    ird_number: "INRD8374X",
-    status: "MANUAL_IDV_REQUESTED",
-    intended_transaction_count: 25,
-    intended_transaction_amount: 3250.75,
-    phone_number: "+1-312-555-0178",
-    failureReason: "DOCUMENT_EXPIRED",
-  },
-  {
-    id: "1",
-
-    email: "sophia.wilson@outlook.com",
-    ird_number: "INRD3927K",
-    status: "COMPLETED",
-    intended_transaction_count: 48,
-    intended_transaction_amount: 9284.6,
-    phone_number: "+44-7812-555-032",
-    failureReason: null,
-  },
-  {
-    id: "1",
-
-    email: "liam.patel@gmail.com",
-    ird_number: "INRD5219Q",
-    status: "FAILED",
-    intended_transaction_count: 10,
-    intended_transaction_amount: 1475.3,
-    phone_number: "+61-400-555-778",
-    failureReason: "FACE_MISMATCH",
-  },
-];
-
 const OnBoardingTable = () => {
   const { dataGridProps } = useDataGrid({
     resource: "transactions",
