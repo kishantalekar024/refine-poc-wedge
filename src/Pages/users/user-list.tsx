@@ -1,3 +1,4 @@
+/// <reference no-default-lib="true"/>
 import { DeleteOutlined } from "@mui/icons-material";
 import { List, Table, Button } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
