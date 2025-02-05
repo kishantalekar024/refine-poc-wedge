@@ -13,6 +13,8 @@ import { authProvider } from "./authProvider";
 import { ThemedLayoutV2 } from "@refinedev/mui";
 import { Login } from "./Pages/login";
 import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
+import { OnboardingList } from "./Pages/onboarding/onboarding-list";
+import OnBoardingTable from "./Pages/wedge/wedge-table";
 
 export default function App() {
   return (
@@ -21,9 +23,12 @@ export default function App() {
         <Refine
           authProvider={authProvider}
           routerProvider={routerProvider}
-          dataProvider={dataProvider(
-            "https://670cc7d77e5a228ec1d15f7e.mockapi.io"
-          )}
+          dataProvider={{
+            default: dataProvider(
+              "https://670cc7d77e5a228ec1d15f7e.mockapi.io"
+            ),
+            onboarding: dataProvider("z"),
+          }}
           resources={[
             {
               name: "users",
@@ -32,6 +37,13 @@ export default function App() {
               create: "/users/new", // http://localhost:3000users/new
               edit: "/users/:id/edit", // http://localhost:3000users/1/edit
               clone: "/users/:id/clone", // http://localhost:3000/my-products/1/clone
+            },
+            {
+              name: "onboarding",
+              list: "/onboarding",
+              meta: {
+                dataProviderName: "",
+              },
             },
           ]}
         >
@@ -53,6 +65,7 @@ export default function App() {
               <Route path="/users" element={<UserList />} />
               <Route path="/users/:id" element={<User />} />
               <Route path="/users/:id/edit" element={<UserEdit />} />
+              <Route path="/onboarding" element={<OnBoardingTable />}></Route>
             </Route>
 
             <Route
